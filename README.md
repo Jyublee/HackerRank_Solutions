@@ -207,7 +207,7 @@ In the main code, it reads the number of birds, the list of bird types, and call
 
 ## 6. Jumping on Clouds
 
-  - [Problem](https://www.hackerrank.com/challenges/migratory-birds/problem?isFullScreen=true)(navigate to the Problem)
+  - [Problem](https://www.hackerrank.com/challenges/jumping-on-the-clouds/problem?isFullScreen=true)(navigate to the Problem)
   - [Solution](https://github.com/Jyublee/HackerRank_Solutions/blob/main/jump.py) (navigate to the Solution file)
   - Explanation:
 ```python
@@ -331,9 +331,9 @@ Finally, it prints the counts for each query by iterating through the counts lis
   - Explanation:
 ```python
 def stones(n, a, b):
-    if a>b:             # If a>b, swap them
+    if a>b:            
         a,b=b,a
-    if a==b:            # If values are same only one final value is possible
+    if a==b:            
         print((n-1)*a)
         return
     start,end,difference=(n-1)*a,(n-1)*b,b-a
@@ -385,7 +385,7 @@ def gridSearch(G, P):
                 if j == h:
                     return "YES"
                  
-                start_idx = G[i].find(P[0], start_idx+1) # iterate the current row in case there are two patterns in the same row
+                start_idx = G[i].find(P[0], start_idx+1)
     return "NO
 ```
 The function first calculates the dimensions of both the grid G and the pattern P. It uses H and W to represent the number of rows and columns in G, and h and w to represent the number of rows and columns in P.
