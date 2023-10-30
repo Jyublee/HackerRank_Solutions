@@ -14,7 +14,7 @@ def timeInWords(h, m):
     ]
 
     if m == 0:
-        return f"{numbers[h]} o' clock"}
+        return f"{numbers[h]} o' clock"
     
     if m == 15:
         return f"quarter past {numbers[h]}"
@@ -364,43 +364,32 @@ It then calls the stones function for each test case to calculate and print the 
 ****
 ## 10. Grid Search
 
-  - [Problem](https://www.hackerrank.com/challenges/the-grid-search/problem?isFullScreen=true)(navigate to the Problem)
-  - [Solution](https://github.com/Jyublee/HackerRank_Solutions/blob/main/Grid.py) (navigate to the Solution file)
+  - [Problem](https://www.hackerrank.com/challenges/circular-array-rotation/problem?isFullScreen=true)(navigate to the Problem)
+  - [Solution](https://github.com/Jyublee/HackerRank_Solutions/blob/main/circulararray.py) (navigate to the Solution file)
   - Explanation:
 ```python
-def gridSearch(G, P):
-    H, W = len(G), len(G[0])
-    h, w = len(P), len(P[0])
-     
-    for i in range(H):
-        start_idx = G[i].find(P[0])
-         
-        if start_idx != -1:
-            while start_idx != -1:
-                # iterate the following rows
-                j = 1
-                while j < h and G[i+j][start_idx:start_idx+w] == P[j]:
-                    j += 1
-                     
-                if j == h:
-                    return "YES"
-                 
-                start_idx = G[i].find(P[0], start_idx+1)
-    return "NO
+def circularArrayRotation(a, k, queries):
+    L=[]
+    x=k%len(a)
+    for i in range(x):
+        L.insert(0,a.pop())
+    b=L+a
+    result=[]
+    for j in queries:
+        result.append(b[j])
+    return result
 ```
-The function first calculates the dimensions of both the grid G and the pattern P. It uses H and W to represent the number of rows and columns in G, and h and w to represent the number of rows and columns in P.
+L is initialized as an empty list. This list will be used to store the elements that are "rotated" out of the original array a.
 
-It iterates through each row of the grid G using the variable i.
+x is calculated as k modulo the length of the array a. This is done to handle cases where k is greater than the length of the array. The remainder of the division (k % len(a)) gives the effective number of positions by which the array should be rotated.
 
-For each row, it finds the starting index (start_idx) of the first row of the pattern P within the current row of G using the find method.
+A loop runs from 0 to x - 1. In each iteration, it pops the last element from the array a using a.pop() and inserts it at the beginning of the list L. This effectively simulates a circular rotation by moving the last x elements to the front of the array a.
 
-If the starting index is not -1 (meaning a match is found in the current row), it enters a loop.
+The rotated array is created by concatenating the list L (containing the elements that were rotated out) with the remaining elements of the original array a. This forms the array b, which represents the array after the circular rotation.
 
-Within the loop, it checks if the subsequent rows of the pattern P match the corresponding rows in the grid G. It increments the variable j to compare each row of the pattern P with the corresponding row in G.
+Another list named result is initialized to store the elements that correspond to the indices specified in the queries list.
 
-If all rows of the pattern P match in the grid G, it returns "YES" to indicate that a match is found.
+A loop iterates through the elements in the queries list. For each index j in the queries list, it retrieves the element at index j from the rotated array b and appends it to the result list.
 
-If there's no complete pattern match in the current row, it continues searching for the pattern by finding the next occurrence of the first row of the pattern in the current row.
-
-If no complete pattern match is found after searching through all rows of G, the function returns "NO" to indicate that the pattern is not present in the grid.
+The result list, containing the elements from the rotated array corresponding to the specified indices, is returned as the final output of the function.
 ****
