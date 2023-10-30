@@ -362,7 +362,7 @@ For each test case, it reads the values for n, a, and b.
 
 It then calls the stones function for each test case to calculate and print the possible final values for the stones. The result represents a series of possible final values for the given set of stones.
 ****
-## 10. Grid Search
+## 10. Circular Array Roation
 
   - [Problem](https://www.hackerrank.com/challenges/circular-array-rotation/problem?isFullScreen=true)(navigate to the Problem)
   - [Solution](https://github.com/Jyublee/HackerRank_Solutions/blob/main/circulararray.py) (navigate to the Solution file)
