@@ -376,3 +376,68 @@ A loop iterates through the elements in the queries list. For each index j in th
 
 The result list, containing the elements from the rotated array corresponding to the specified indices, is returned as the final output of the function.
 ****
+## 11.Bigger is Greater
+
+  - [Problem](https://www.hackerrank.com/challenges/bigger-is-greater/problem?isFullScreen=true)(navigate to the Problem)
+  - [Solution](https://github.com/Jyublee/HackerRank_Solutions/blob/main/greater.py) (navigate to the Solution file)
+  - Explanation:
+```python
+t = int(input())
+
+for z in range(t):
+    w = list(input())
+    l = len(w)
+    
+    i = l - 1
+    while i > 0 and w[i-1] >= w[i]:
+        i-=1
+    
+    if i<=0:
+        print ("no answer")
+        continue
+    
+    j = l - 1
+    while w[j] <= w[i-1]:
+        j-=1
+    
+    w[i-1],w[j] = w[j],w[i-1]
+    
+    print ("".join(w[:i]+w[i:][::-1]))
+  ```
+ Here we are going to traverse the string from the last charecter in order to find the first one which greater than the previous one, since only then would be have a possible swap to make
+
+ if our first loop is executed till i=0 that means there is no possible swap hence we return no answer
+
+ in the other case now we have to determine which 2 elements to swap, for this we start traversing from the last charecter again in order to find one that is less than or equal to our first selected charecter w[i-1]
+
+ then after finding a suitable one we swap it and then build the string as parts. the two parts would be w[:i] and the rest of the string in reverse.
+****
+## 12. Chocolates in a box 
+  - [Problem](https://www.hackerrank.com/challenges/chocolate-in-box/problem?isFullScreen=true)(navigate to the Problem)
+  - [Solution](https://github.com/Jyublee/HackerRank_Solutions/blob/main/choco.py) (navigate to the Solution file)
+  - Explanation:
+  ```python
+def chocolateInBox(arr):
+    xo = 0
+    for x in arr:
+        xo ^= x
+    if xo == 0: 
+        return 0
+    c = 0
+    for x in arr:
+        if x ^ xo < x: 
+            c += 1
+    return c
+
+  ```
+Here we are going to use some lemmas from the Nim game inorder to complete this process 
+
+We know that the ideal moves will leave a state of nim sum 0, that is when we xor all the chocolates if we get a non 0 then it is a winning position 
+
+Hence first we xor all the array elements to check if the result is 0, if so then there is no way to win hence we print 0
+
+Else we know we can win, now the question becomes who many ways can that be done, for this we will have to check will our final resultant xor value and compare the xor value of each element in our array to see if we have a choice to make an intermediate play state by using that array element
+
+Finally we return the count 
+
+***
