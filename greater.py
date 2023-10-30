@@ -1,15 +1,22 @@
-for _ in range(int(input())):
-    s = input()
-    s = list(s[::-1])
-    done = 0
-    for i in range(1,len(s)):
-        if s[i-1] > s[i]:
-            for j in range(i):
-                if s[j] > s[i]:
-                    s[j],s[i] = s[i],s[j]
-                    s = sorted(s[:i])[::-1] + s[i:]
-                    print("".join(s[::-1]))
-                    break
-            break
-    else:
-        print("no answer")
+t = int(input())
+
+for z in range(t):
+    w = list(input())
+    l = len(w)
+    
+    i = l - 1
+    while i > 0 and w[i-1] >= w[i]:
+        i-=1
+    
+    if i<=0:
+        print ("no answer")
+        continue
+    
+    j = l - 1
+    while w[j] <= w[i-1]:
+        j-=1
+    
+    w[i-1],w[j] = w[j],w[i-1]
+    
+    print ("".join(w[:i]+w[i:][::-1]))
+        
