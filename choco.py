@@ -5,7 +5,7 @@ import os
 import random
 import re
 import sys
-import operations
+
 #
 # Complete the 'chocolateInBox' function below.
 #                                                        421            421
@@ -14,13 +14,18 @@ import operations
 #
 
 def chocolateInBox(arr):
-    r=0
-    for i in arr:
-        r^=i 
-    if(r==0):
-        return(0)
-    else:
-        return(r)
+    xo = 0
+    for x in arr:
+        xo ^= x
+    if xo == 0: 
+        return 0
+    c = 0
+    for x in arr:
+        if x ^ xo < x: 
+            c += 1
+    return c
+        
+        
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
