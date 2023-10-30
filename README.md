@@ -51,49 +51,37 @@ For minutes less than 30, the function further distinguishes between different m
 
 For minutes greater than or equal to 30, the function adjusts the description for the time remaining until the next hour. It calculates the remaining minutes and, like in the previous case, provides detailed descriptions for minutes less than 20 and more concise descriptions for minutes between 20 and 29.
 ****
-## 2.Bigger is Greater
+## 2.Lonely Integer
 
-  - [Problem](https://www.hackerrank.com/challenges/bigger-is-greater/problem?isFullScreen=true)(navigate to the Problem)
-  - [Solution](https://github.com/Jyublee/HackerRank_Solutions/blob/main/greater.py) (navigate to the Solution file)
+  - [Problem](https://www.hackerrank.com/challenges/lonely-integer/problem?isFullScreen=true)(navigate to the Problem)
+  - [Solution](https://github.com/Jyublee/HackerRank_Solutions/blob/main/lonely.py) (navigate to the Solution file)
   - Explanation:
 ```python
-n=int(input())
-for a in range(n):
-    s = input()
-    s = list(s[::-1])
-    done = 0
-    for i in range(1,len(s)):
-        if s[i-1] > s[i]:
-            for j in range(i):
-                if s[j] > s[i]:
-                    s[j],s[i] = s[i],s[j]
-                    s = sorted(s[:i])[::-1] + s[i:]
-                    print("".join(s[::-1]))
-                    break
-            break
+def lonelyinteger(a):
+    a = sorted(a)
+    if len(a) < 3:
+        return a[0]
+    elif a[0] != a[1]:
+        return a[0]
     else:
-        print("no answer")
+        return lonelyinteger(a[2:])
+
+if __name__ == '__main__':
+    a = int(input())
+    b = map(int, input().strip().split(" "))
+    print(lonelyinteger(b))
 
 ```
-The program begins by reading an integer that represents the number of test cases to be processed.
+I have made an attempt to solve this recursively, 
 
-For each test case, it reads a string s.
+First it sorts the input list a in ascending order.
 
-It reverses the string and converts it into a list of characters. This reversed string will be manipulated to find the next greater permutation.
+If the length of the sorted list is less than 3, it means there is only one element in the list, so that element is returned as the lonely integer.
 
-The done variable is used to track whether a greater permutation has been found.
+If the first and second elements of the sorted list are not equal, it means the first element is the lonely integer, and it is returned.
 
-It then iterates through the reversed string, starting from the second-to-last character (i ranging from 1 to len(s) - 1).
+If the first and second elements are equal, the function makes a recursive call with the sorted list excluding the first two elements.
 
-It checks if the current character is greater than the next character. This is a crucial condition for finding the next greater permutation.
-
-If the condition is met, it searches for the smallest character to the right of the current character (s[j] > s[i]).
-
-It swaps the found characters and sorts the substring to the right of i in ascending order.
-
-The program prints the result, which is the next greater permutation in the original string format, and breaks out of the loop.
-
-If no answer is found within the loop (meaning the string is already in the lexicographically greatest order), it prints "no answer."
 ****
 
 ## 3.Climbing the Leaderboard
