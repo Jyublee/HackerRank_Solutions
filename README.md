@@ -301,43 +301,49 @@ After counting the occurrences for the current query, it appends the count to th
 
 Finally, it prints the counts for each query by iterating through the counts list.
 ****
-## 9. Mansa and the Stones
+## 9. Sherlock and the valid string
 
-  - [Problem](https://www.hackerrank.com/challenges/manasa-and-stones/problem?isFullScreen=true)(navigate to the Problem)
-  - [Solution](https://github.com/Jyublee/HackerRank_Solutions/blob/main/mansa.py) (navigate to the Solution file)
+  - [Problem](https://www.hackerrank.com/challenges/sherlock-and-valid-string?isFullScreen=true)(navigate to the Problem)
+  - [Solution](https://github.com/Jyublee/HackerRank_Solutions/blob/main/sherlock.py) (navigate to the Solution file)
   - Explanation:
 ```python
-def stones(n, a, b):
-    if a>b:            
-        a,b=b,a
-    if a==b:            
-        print((n-1)*a)
-        return
-    start,end,difference=(n-1)*a,(n-1)*b,b-a
-    for i in range(start,end+1,difference):
-        print(i,end=" ")
-    print()
- 
-for _ in range(int(input())):
-    n,a,b=int(input()),int(input()),int(input())
-    stones(n,a,b)
-    
+set_list = list(s) 
+freq = {} 
+  for item in set_list: 
+    if (item in freq): 
+      freq[item] += 1
+    else: 
+      req[item] = 1
+  freq_of_freq = list(freq.values())
+  freq_of_freq_counts = set(freq_of_freq)
+  if(len(freq_of_freq_counts)==1):
+    return "YES"
+  else:
+    my_freq = {} 
+    for item in freq_of_freq: 
+      if (item in freq): 
+        freq[item] += 1
+      else: 
+        freq[item] = 1
+    theValues = list(freq.values())
+    theKeys = list(freq.keys())
+    if(len(theValues) == 2):
+      if( (theKeys[1] - theKeys[0] <= 1) and (theValues[1] == 1)):
+        return "YES"
+      else:
+        return "NO"
+    else:
+      return "NO"
 ```
-The stones function takes three parameters: n (the number of stones), a (the cost to add 'a'), and b (the cost to add 'b').
+To solve this we use the concept of a hash table.
 
-It starts by checking whether a is greater than b. If so, it swaps the values to ensure that a is smaller than or equal to b.
+First be break down the input into a dictonary with the respective charecters and their occurences as key value pairs.
 
-It then checks if a and b are the same. If they are, it means that there's only one possible final value for all stones, and it calculates and prints that value.
+Then we examine the resulting dict_values to see how many there are, if there is one then the output is Yes and if there is more than 2 then out put is no
 
-If a and b are different, it calculates the starting value (start), ending value (end), and the difference (difference) between consecutive values.
+If the number of values is 2 then there is still a possibility for yes 
 
-It then enters a loop that generates and prints possible final values for the stones within the specified range, using the difference to increment the values.
-
-In the main code, it first reads the number of test cases.
-
-For each test case, it reads the values for n, a, and b.
-
-It then calls the stones function for each test case to calculate and print the possible final values for the stones. The result represents a series of possible final values for the given set of stones.
+Hence we check the case where the diffrence in the magnitude of the two values is 1 and give the result accordingly
 ****
 ## 10. Circular Array Roation
 
