@@ -13,26 +13,25 @@ import sys
 # The function accepts following parameters:
 #  1. STRING_ARRAY G
 #  2. STRING_ARRAY P
-
+#
+def check_pattern(x,y):
+    for i in range(r):
+        if P[i]!=G[x+i][y:y+c]:
+            return False
+    else:
+        return True
+        
 def gridSearch(G, P):
-    H, W = len(G), len(G[0])
-    h, w = len(P), len(P[0])
-     
-    for i in range(H):
-        start_idx = G[i].find(P[0])
-         
-        if start_idx != -1:
-            while start_idx != -1:
-
-                j = 1
-                while j < h and G[i+j][start_idx:start_idx+w] == P[j]:
-                    j += 1
-                     
-                if j == h:
-                    return "YES"
-                 
-                start_idx = G[i].find(P[0], start_idx+1) 
-    return "NO"
+    for i in range(R):
+        for j in range(C):
+            if G[i][j]==P[0][0]:
+                for x in range(r):
+                    if P[x]!=G[i+x][j:j+c]:
+                        break;
+                else:
+                    return("YES")
+    else:
+        return("NO")
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
