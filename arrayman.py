@@ -1,34 +1,26 @@
+#!/bin/python3
 
+import math
 import os
+import random
+import re
+import sys
 
-# Complete the arrayManipulation function below.
-def arrayManipulation(n, queries):
-    arr = [0]*(n+1)
-    max_value = 0
-    total_sum = 0
+#
+# Complete the 'arrayManipulation' function below.
+#
+# The function is expected to return a LONG_INTEGER.
+# The function accepts following parameters:
+#  1. INTEGER n
+#  2. 2D_INTEGER_ARRAY queries
+#
 
-    for query in queries:
-        l = query[0]
-        h = query[1]
-        val = query[2]
-        arr[l-1] = arr[l-1] + val
-        arr[h] = arr[h]-val
-    for value in arr:
-        total_sum = total_sum + value
-        max_value = max(max_value, total_sum)
-    return max_value
-
-if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
-
-    nm = input().split()
-    n = int(nm[0])
-    m = int(nm[1])
-
-    QUERIES = []
-    for _ in range(m):
-        QUERIES.append(list(map(int, input().rstrip().split())))
-
-    RESULT = arrayManipulation(n, QUERIES)
-    fptr.write(str(RESULT) + '\n')
-    fptr.close()
+N, M = map(int, input().split())
+A = [0 for i in range(N+2)]
+for i in range(M):
+    a, b, k = map(int, input().split())
+    A[a] += k
+    A[b + 1] -= k
+for i in range(1, len(A)):
+    A[i] += A[i-1]
+print(max(A))
