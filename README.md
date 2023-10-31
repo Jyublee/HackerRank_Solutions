@@ -293,33 +293,36 @@ Finally, it prints the counts for each query by iterating through the counts lis
   - [Solution](https://github.com/Jyublee/HackerRank_Solutions/blob/main/sherlock.py) (navigate to the Solution file)
   - Explanation:
 ```python
-set_list = list(s) 
-freq = {} 
-  for item in set_list: 
-    if (item in freq): 
-      freq[item] += 1
-    else: 
-      req[item] = 1
-  freq_of_freq = list(freq.values())
-  freq_of_freq_counts = set(freq_of_freq)
-  if(len(freq_of_freq_counts)==1):
-    return "YES"
-  else:
-    my_freq = {} 
-    for item in freq_of_freq: 
-      if (item in freq): 
-        freq[item] += 1
-      else: 
-        freq[item] = 1
-    theValues = list(freq.values())
-    theKeys = list(freq.keys())
-    if(len(theValues) == 2):
-      if( (theKeys[1] - theKeys[0] <= 1) and (theValues[1] == 1)):
+def isValid(s):
+    set_list = list(s)
+    freq = {}
+    for item in set_list:
+        if item in freq:
+            freq[item] += 1
+        else:
+            freq[item] = 1
+    freq_of_freq = list(freq.values())
+    freq_of_freq_counts = set(freq_of_freq)
+    
+    if len(freq_of_freq_counts) == 1:
         return "YES"
-      else:
-        return "NO"
     else:
-      return "NO"
+        freq_freq = {}
+        for item in freq_of_freq:
+            if item in freq_freq:
+                freq_freq[item] += 1
+            else:
+                freq_freq[item] = 1
+        theValues = list(freq_freq.values())
+        theKeys = list(freq_freq.keys())
+        if len(theValues) == 2:
+            if theKeys[1] - theKeys[0] <= 1 and theValues[1] == 1:
+                return "YES"
+            else:
+                return "NO"
+        else:
+            return "NO"
+
 ```
 To solve this we use the concept of a hash table.
 
