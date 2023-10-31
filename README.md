@@ -412,7 +412,40 @@ for z in range(t):
 
  then after finding a suitable one we swap it and then build the string as parts. the two parts would be w[:i] and the rest of the string in reverse.
 ****
-## 12. Chocolates in a box 
+## 12. Zero Nim Game
+  - [Problem](https://www.hackerrank.com/challenges/zero-move-nim/problem)(navigate to the Problem)
+  - [Solution](https://github.com/Jyublee/HackerRank_Solutions/blob/main/zero_nim.py) (navigate to the Solution file)
+  - Explanation:
+  ```python
+import sys
+
+
+g = int(input().strip())
+for a0 in range(g):
+    n = int(input().strip())
+    p = [int(p_temp) for p_temp in input().strip().split(' ')]
+    # your code goes here
+    result = 0
+    for a in p:
+        if(a%2==0):
+            a = a-1
+        else:
+            a = a+1
+        result ^= a
+    if result == 0:
+        print("L")
+    else:
+        print("W")
+
+  ```
+To solve this we mainly need to utilise the concept of grundy numbers.
+
+The trick comes with the inclusion of a zero move, the answer comes out when u write out the states and their respective grundy numbers for each of them. we see that when there is a zero move available and the number is even then the grundy number would be n-1 and for odd it would be n+1
+
+since all the stacks are having the zero move available initially we will utitilise this new idea for computing the grundy numbers hence comming to the answer
+***
+
+## 13. Chocolates in a box 
   - [Problem](https://www.hackerrank.com/challenges/chocolate-in-box/problem?isFullScreen=true)(navigate to the Problem)
   - [Solution](https://github.com/Jyublee/HackerRank_Solutions/blob/main/choco.py) (navigate to the Solution file)
   - Explanation:
