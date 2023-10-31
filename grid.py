@@ -13,14 +13,7 @@ import sys
 # The function accepts following parameters:
 #  1. STRING_ARRAY G
 #  2. STRING_ARRAY P
-#
-def check_pattern(x,y):
-    for i in range(r):
-        if P[i]!=G[x+i][y:y+c]:
-            return False
-    else:
-        return True
-        
+#      
 def gridSearch(G, P):
     for i in range(R):
         for j in range(C):
