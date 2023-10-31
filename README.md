@@ -224,39 +224,25 @@ Finally, the function returns the remaining energy level as the result.
   - [Solution](https://github.com/Jyublee/HackerRank_Solutions/blob/main/arrayman.py) (navigate to the Solution file)
   - Explanation:
 ```python
-def arrayManipulation(n, queries):
-    arr = [0]*(n+1)
-    max_value = 0
-    total_sum = 0
-
-    for query in queries:
-        l = query[0]
-        h = query[1]
-        val = query[2]
-        arr[l-1] = arr[l-1] + val
-        arr[h] = arr[h]-val
-    for value in arr:
-        total_sum = total_sum + value
-        max_value = max(max_value, total_sum)
-    return max_value
-
-    
+N, M = map(int, input().split())
+A = [0 for i in range(N+2)]
+for i in range(M):
+    a, b, k = map(int, input().split())
+    A[a] += k
+    A[b + 1] -= k
+for i in range(1, len(A)):
+    A[i] += A[i-1]
+print(max(A))
 ```
-The function takes two parameters: n, which represents the size of the array, and queries, which is a list of queries to be applied to the array.
+This one is pretty straightforward, first we declare a big array defaulted to the value 0 in order to perform our operations
 
-It initializes an array arr of size n+1 with all elements initially set to 0. This array will be used to represent the changes at different positions in the original array.
+Then we take the inputs of a b and k respectively from the user and then as mentioned in the question, we perform the operations.
 
-It also initializes two variables, max_value to keep track of the maximum value encountered during the manipulations and total_sum to track the cumulative sum of the changes.
+In order to add k between a and b we add k to the a'th element then run a for loop to add subsequent elements of the array
 
-It then iterates through each query in the queries list.
+In order to stop the updation at b we will preemptively stop the updation by decresing the value oh a[b] with k 
 
-For each query, it extracts the query parameters: l (left index), h (right index), and val (the value to be added within the range l to h).
-
-It updates the arr by adding val at the l-1 position and subtracting val at the h position. This step efficiently represents the change within the specified range in the original array.
-
-After processing all the queries, the function iterates through the arr and calculates the cumulative sum while updating the max_value if a larger value is encountered.
-
-Finally, the function returns the max_value, which represents the maximum value in the manipulated array.
+at the end of the operation we will print the max value of the array
 ****
 
 ## 8. Sparse Arrays
