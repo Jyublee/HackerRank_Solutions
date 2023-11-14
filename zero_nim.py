@@ -10,7 +10,7 @@ for a0 in range(g):
     # your code goes here
     result = 0
     for a in p:
-        if(a%2==0):
+        if(a%2==0):                #we consider the case of 0 move here, he arrived at this formula by deriving it from the grunty numbers 
             a = a-1
         else:
             a = a+1
