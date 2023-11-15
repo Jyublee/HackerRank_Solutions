@@ -21,7 +21,7 @@ def chocolateInBox(arr):
         return 0
     c = 0
     for x in arr:
-        if x ^ xo < x: 
+        if x ^ xo < x:                 # to check if there is an intermediate state that the player can play 
             c += 1
     return c
         
